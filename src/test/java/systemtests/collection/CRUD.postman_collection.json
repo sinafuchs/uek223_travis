@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "CreateUser",
+			"name": "createUser",
 			"event": [
 				{
 					"listen": "test",
@@ -14,7 +14,7 @@
 						"id": "4c2fb767-e497-42bf-9d75-2b033be0b3ba",
 						"exec": [
 							"pm.test(\"Response time is less than 200ms\", function () {",
-							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"    pm.expect(pm.response.responseTime).to.be.below(1500);",
 							"});",
 							"",
 							"pm.test(\"Status code is 201\", function () {",
@@ -51,10 +51,10 @@
 					}
 				},
 				"url": {
-					"raw": "https://uek223staging.herokuapp.com/users",
+					"raw": "https://sinafuchsdk223advanced.herokuapp.com/users",
 					"protocol": "https",
 					"host": [
-						"uek223staging",
+						"sinafuchsdk223advanced",
 						"herokuapp",
 						"com"
 					],
@@ -66,7 +66,7 @@
 			"response": []
 		},
 		{
-			"name": "FindUser",
+			"name": "findUser",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -77,7 +77,7 @@
 			"response": []
 		},
 		{
-			"name": "UpdateUser",
+			"name": "updateUser",
 			"event": [
 				{
 					"listen": "test",
@@ -85,7 +85,7 @@
 						"id": "9ee9497b-e55f-4070-b808-42456ac2100c",
 						"exec": [
 							"pm.test(\"Response time is less than 1000ms\", function () {",
-							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"    pm.expect(pm.response.responseTime).to.be.below(1500);",
 							"});",
 							"",
 							"pm.test(\"Status code is 204\", function () {",
@@ -105,10 +105,10 @@
 				"method": "PUT",
 				"header": [],
 				"url": {
-					"raw": "https://uek223staging.herokuapp.com/users/{{userDTOToBeTestedAgainstId1}}",
+					"raw": "https://sinafuchsdk223advanced.herokuapp.com/users/{{userDTOToBeTestedAgainstId1}}",
 					"protocol": "https",
 					"host": [
-						"uek223staging",
+						"sinafuchsdk223advanced",
 						"herokuapp",
 						"com"
 					],
@@ -121,7 +121,7 @@
 			"response": []
 		},
 		{
-			"name": "DeleteUser",
+			"name": "deleteUser",
 			"event": [
 				{
 					"listen": "test",
@@ -129,7 +129,7 @@
 						"id": "9ee9497b-e55f-4070-b808-42456ac2100c",
 						"exec": [
 							"pm.test(\"Response time is less than 1000ms\", function () {",
-							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"    pm.expect(pm.response.responseTime).to.be.below(1500);",
 							"});",
 							"",
 							"pm.test(\"Status code is 204\", function () {",
@@ -149,10 +149,10 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "https://uek223staging.herokuapp.com/users/{{userDTOToBeTestedAgainstId1}}",
+					"raw": "https://sinafuchsdk223advanced.herokuapp.com/users/{{userDTOToBeTestedAgainstId1}}",
 					"protocol": "https",
 					"host": [
-						"uek223staging",
+						"sinafuchsdk223advanced",
 						"herokuapp",
 						"com"
 					],
