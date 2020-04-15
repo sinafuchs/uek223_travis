@@ -1,3 +1,4 @@
+
 jdk:
   - openjdk11
 
@@ -16,6 +17,7 @@ before_install:
   - chmod +x gradlew
   
 install:
+- npm install
 - npm install -g newman
   
 addons:
@@ -33,4 +35,5 @@ jobs:
         api-key: $HEROKU_API_KEY
         app: $HEROKU_STAGING_APP
       after_success:
+      script: npm --version
       script: newman run src/test/java/systemtests/collection/CRUD.postman_collection.json -e src/test/java/systemtests/uek223advancedenv.postman_environment.json
