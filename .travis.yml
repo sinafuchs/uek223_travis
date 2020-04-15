@@ -1,14 +1,22 @@
 jdk:
   - openjdk11
 
-language: java
+language: 
+  - java
+  - node_js
+  
+node_js:
+  - "12.9.0"
   
 stages:
-  - continousIntegration
+ # - continousIntegration
   - continousDelivery
 
 before_install:
   - chmod +x gradlew
+  
+install:
+- npm install -g newman
   
 addons:
   sonarcloud:
@@ -17,13 +25,12 @@ addons:
     
 jobs:
   include:
-    - stage: continousIntegration
-      script: ./gradlew sonarqube
+  #  - stage: continousIntegration
+  #    script: ./gradlew sonarqube
     - stage: continousDelivery
       deploy:
         provider: heroku
         api-key: $HEROKU_API_KEY
         app: $HEROKU_STAGING_APP
       after_success:
-      # run newman skripts
-
+      script: newman run src/test/java/systemtests/collection/CRUD.postman_collection.json -e src/test/java/systemtests/uek223advancedenv.postman_environment.json
