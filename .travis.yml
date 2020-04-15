@@ -11,7 +11,7 @@ before_install:
   - chmod +x gradlew
   
 install:
-  - npm install newman
+ #   - npm install newman
     
 jobs:
   include:
