@@ -1,0 +1,169 @@
+{
+	"info": {
+		"_postman_id": "3fd68f9f-6363-4344-9237-95c9eca812dc",
+		"name": "CRUD",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CreateUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4c2fb767-e497-42bf-9d75-2b033be0b3ba",
+						"exec": [
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"Check if created user is equals returned user\", function () {",
+							"    const jsonData = pm.response.json();",
+							"    pm.expect(jsonData.firstName).to.eql(JSON.parse(pm.environment.get(\"userDTOToBeTestedAgainst1\")).firstName);",
+							"    pm.expect(jsonData.lastName).to.eql(JSON.parse(pm.environment.get(\"userDTOToBeTestedAgainst1\")).lastName);",
+							"    pm.expect(jsonData.email).to.eql(JSON.parse(pm.environment.get(\"userDTOToBeTestedAgainst1\")).email);",
+							"    pm.environment.set(\"userDTOToBeTestedAgainst1\",jsonData);",
+							"    pm.environment.set(\"userDTOToBeTestedAgainstId1\",jsonData.id);",
+							"});",
+							"",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{{userDTOToBeTestedAgainst1}}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://uek223staging.herokuapp.com/users",
+					"protocol": "https",
+					"host": [
+						"uek223staging",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FindUser",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9ee9497b-e55f-4070-b808-42456ac2100c",
+						"exec": [
+							"pm.test(\"Response time is less than 1000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});",
+							"",
+							"pm.test(\"Response body is null\", function () {",
+							"    pm.responseBody === null",
+							"})",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "https://uek223staging.herokuapp.com/users/{{userDTOToBeTestedAgainstId1}}",
+					"protocol": "https",
+					"host": [
+						"uek223staging",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users",
+						"{{userDTOToBeTestedAgainstId1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9ee9497b-e55f-4070-b808-42456ac2100c",
+						"exec": [
+							"pm.test(\"Response time is less than 1000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});",
+							"",
+							"pm.test(\"Response body is null\", function () {",
+							"    pm.responseBody === null",
+							"})",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://uek223staging.herokuapp.com/users/{{userDTOToBeTestedAgainstId1}}",
+					"protocol": "https",
+					"host": [
+						"uek223staging",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users",
+						"{{userDTOToBeTestedAgainstId1}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
