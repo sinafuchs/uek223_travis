@@ -2,8 +2,7 @@ jdk:
   - openjdk11
   
 stages:
-  - buildAutomation
-  - continousIntegration
+  - unitAndIntegrationTest
   - continousDelivery
   - continousDeployment
   
@@ -15,10 +14,8 @@ install:
     
 jobs:
   include:
-    - stage: buildAutomation
-      script: ./gradlew test --tests '*unit*'
-    - stage: continousIntegration
-      script: ./gradlew test --tests '*integration*'
+    - stage: unitAndIntegrationTest
+      script: ./gradlew test 
     - stage: continousDelivery
       deploy:
         provider: heroku
