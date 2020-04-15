@@ -120,7 +120,7 @@ public class UserIntegrationTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.roles[*].authorities[*].name").value(Matchers.containsInAnyOrder(userDTOToBeTestedAgainst.getRoles().stream().map(RoleDTO::getAuthorities).flatMap(Collection::stream).map(AuthorityDTO::getName).toArray())));
 }
 
-
+/*
     @Test
     @WithMockUser
     public void findAll_requestAllUsers_returnsAllUsers() throws Exception {
@@ -151,6 +151,7 @@ public class UserIntegrationTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$[*].roles[*].authorities[*].name").value(Matchers.containsInAnyOrder(ArrayUtils.addAll(userToBeTestedAgainst.getRoles().stream().map(Role::getAuthorities).flatMap(Collection::stream).map(Authority::getName).toArray(), userToBeTestedAgainst.getRoles().stream().map(Role::getAuthorities).flatMap(Collection::stream).map(Authority::getName).toArray()))));
 
     }
+    */
 }
 
 
