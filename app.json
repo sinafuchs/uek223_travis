@@ -1,0 +1,7 @@
+{
+  "name": "Spring Boot App",
+  "description": "Spring Boot App with CICD",
+  "repository": "https://github.com/yagan93/uek_223_advanced",
+  "logo": "https://node-js-sample.herokuapp.com/node.png",
+  "keywords": ["node", "express", "static"]
+}
