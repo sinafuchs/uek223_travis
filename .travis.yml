@@ -1,25 +1,20 @@
+language: node_js
 
-jdk:
-  - openjdk11
-
-language: 
-  - java
-  - node_js
-  
 node_js:
-  - "12.9.0"
-  
+  - 10
+
 stages:
- # - continousIntegration
+  - continousIntegration
   - continousDelivery
 
 before_install:
   - chmod +x gradlew
+  - sudo apt-get update
   
 install:
-- npm install
-- npm install -g newman
-  
+  - sudo apt install curl
+  - npm install -g newman
+   
 addons:
   sonarcloud:
     organization: $SONAR_USER
@@ -27,13 +22,14 @@ addons:
     
 jobs:
   include:
-  #  - stage: continousIntegration
-  #    script: ./gradlew sonarqube
+    - stage: continousIntegration
+      script: ./gradlew sonarqube
     - stage: continousDelivery
       deploy:
         provider: heroku
         api-key: $HEROKU_API_KEY
         app: $HEROKU_STAGING_APP
       after_success:
-      script: npm --version
-      script: newman run src/test/java/systemtests/collection/CRUD.postman_collection.json -e src/test/java/systemtests/uek223advancedenv.postman_environment.json
+      script:
+        - while [ $(curl -o /dev/null -s -w "%{http_code}\n" https://$HEROKU_STAGING_APP.herokuapp.com/) != 404 ];do echo 'Waiting for the Application to be started'; sleep 5; done
+        - newman run src/test/java/systemtests/collection/CRUD.postman_collection.json -e src/test/java/systemtests/environment/uek223advancedenv.postman_environment.json
